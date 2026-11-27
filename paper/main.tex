@@ -494,12 +494,12 @@ J_i := F^{-1}(i/n) \cap [-1, 1]
 \]
 is a nonempty compact subinterval of $(-1, 1)$, and the intervals $J_1, \dots, J_{n-1}$ are strictly ordered from bottom to top with positive pairwise gaps (when $\mu$ is the uniform measure on $B^d$, each $J_i$ is a single point). Let $\Hcal \subset \Pcal_\mu$ be the compact set of all horizontal quantile partitions of $B^d$: partitions $(C_1, \dots, C_n)$ obtained by choosing $(b_1, \dots, b_{n-1}) \in J_1 \times \dots \times J_{n-1}$, cutting $B^d$ along the horizontal hyperplanes $z = b_i$, and permitting any permutation of the $n$ labels.
 
-By absolute continuity of $\mu$ with respect to $\vol_d$, there exists $v_0 > 0$ such that every Borel set $E \subset B^d$ with $\mu(E) = 1/n$ satisfies $\vol_d(E) \ge v_0$. Choose $t \in (0,1)$ close enough to $1$ so that the two spherical caps $B^d \cap \{z > t\}$ and $B^d \cap \{z < -t\}$ each have volume strictly less than $v_0 / 2$. Then for every convex set $C \subset B^d$ with $\mu(C) = 1/n$, its ordinary volume centroid $(\bar u, \bar z) = \vol_d(C)^{-1} \int_C (u,z)\,dx$ satisfies
+By absolute continuity of $\mu$ with respect to $\vol_d$, there exists $v_0 > 0$ such that every Borel set $E \subset B^d$ with $\mu(E) = 1/n$ satisfies $\vol_d(E) \ge v_0$. Choose $t \in (0,1)$ close enough to $1$ so that the two spherical caps $B^d \cap \{z > t\}$ and $B^d \cap \{z < -t\}$ each have volume strictly less than $v_0 / 2$. Then for every convex set $C \subset B^d$ with $\mu(C) = 1/n$, its ordinary volume centroid $(\bar u, \bar z) = \vol_d(C)^{-1} \int_C (u,z)\,dx$ satisfies the following bound. Choose $\sigma \in \{-1,1\}$ so that $\sigma \bar z = |\bar z|$ (either sign when $\bar z = 0$):
 \begin{equation}
 \label{eq:z-centroid-bound}
 |\bar z| = \sigma \bar z \le t + (1-t)\frac{\vol_d(C \cap \{\sigma z > t\})}{\vol_d(C)} < \frac{1+t}{2} < 1,
 \end{equation}
-where $\sigma \in \{-1,1\}$ is chosen so that $\sigma \bar z = |\bar z|$ (either sign when $\bar z = 0$). Indeed, $\sigma z \le t$ off the selected one-sided cap and $\sigma z \le 1$ on it, while $\vol_d(C \cap \{\sigma z > t\}) < \frac{1}{2}v_0 \le \frac{1}{2}\vol_d(C)$.
+Indeed, $\sigma z \le t$ off the selected one-sided cap and $\sigma z \le 1$ on it, while $\vol_d(C \cap \{\sigma z > t\}) < \frac{1}{2}v_0 \le \frac{1}{2}\vol_d(C)$.
 
 Fix $h \in (0,1)$ strictly larger than $(1+t)/2$ and strictly larger than $\max_{1 \le i \le n-1} \max_{b \in J_i} |b|$, and choose $a > 0$ with $a^2 + h^2 < 1$. Put
 \begin{equation}
@@ -704,7 +704,7 @@ As in Section~\ref{sec:ball-localization}, absolute continuity $\mu \ll \vol_d$ 
 \]
 satisfies $|\bar z_g| < (1+t)/2 < 1$, by the exact same estimate as~\eqref{eq:z-centroid-bound}.
 
-Choose $h \in (0,1)$ strictly larger than $(1+t)/2$ and strictly larger than $\max_{1 \le i \le n-1} \max_{b \in J_i} |b|$. By Lemma~\ref{lem:interior-chord}, choose $a > 0$ so that $A := D \times [-h, h] \subset \inte K$, where $D = \{|u| \le a\}$, and set $\kappa := \int_D u_1^2 \, du > 0$. Define the continuous functional $W_\delta : \Kcal(\R^d) \to \R^{d-1}$ by
+Choose $h \in (0,1)$ strictly larger than $(1+t)/2$ and than $\max_{1 \le i \le n-1} \max_{b \in J_i} |b|$. By Lemma~\ref{lem:interior-chord}, choose $a > 0$ so that $A := D \times [-h, h] \subset \inte K$, where $D := \{u : |u| \le a\}$. Set $\kappa := \int_D u_1^2 \, du > 0$. Define the continuous functional $W_\delta : \Kcal(\R^d) \to \R^{d-1}$ by
 \[
 W_\delta(C) := \frac{1}{\kappa}\left(\int_{C \cap A} u \, dx + \delta \int_C u\, g\, dx\right).
 \]
@@ -811,7 +811,10 @@ By~\eqref{eq:cube-moment-formulas}, we can pick $\delta \in (0, 1/12)$ sufficien
 
 For $\sigma > 0$, define the globally continuous map $\Psi_\sigma : \R^2 \times \R^2 \to \C$ by
 \[
-\Psi_\sigma(W, V) := f(W) + \sigma^2 \left[ \sum_{i \ne 2} \chi_i(V_1)\, \Delta_i(W/\sigma) + \chi_2(V_1)\, D_*\bigl(B_*(W,V)/\sigma,\; -(B_*(W,V) + W)/\sigma\bigr) \right].
+\begin{aligned}
+\Psi_\sigma(W, V) := f(W) + \sigma^2 \Bigg[ &\sum_{i \ne 2} \chi_i(V_1)\, \Delta_i(W/\sigma) \\
+&+ \chi_2(V_1)\, D_*\Bigl(\frac{B_*(W,V)}{\sigma},\; -\frac{B_*(W,V) + W}{\sigma}\Bigr) \Bigg].
+\end{aligned}
 \]
 Because the $\chi_i$ have disjoint supports and values in $[0,1]$, $|\Psi_\sigma(W, V) - f(W)| \le M \sigma^2$ uniformly on $\R^4$, where $M = \max(\{\|\Delta_i\|_\infty : i \ne 2\} \cup \{\|D_*\|_\infty\})$.
 
@@ -877,9 +880,12 @@ By the $3$-dimensional Brunn--Minkowski inequality, the function $g_i(r) := A_i(
 Because $g_i$ is finite and concave on $\pi_i$, it admits a supporting affine majorant $r \mapsto g_i(0) + L_i(r)$ on $\pi_i$ touching $g_i$ at $0$. Integrating against $\lambda_i$ (which has mean $0$) and applying Jensen's inequality to the strictly convex function $t \mapsto t^{4/3}$ on $[0, \infty)$ yields
 \begin{equation}
 \label{eq:slice-jensen}
-A_i(0)^{1/3} = g_i(0) \ge \int_{\pi_i} A_i(r)^{1/3}\, d\lambda_i(r)
-= \frac{1}{M} \int_E A_i(r)^{4/3}\, d\nu(r)
-\ge \frac{1}{M} \left(\int_E A_i(r)\, d\nu(r)\right)^{4/3} = M^{1/3}.
+\begin{aligned}
+A_i(0)^{1/3} = g_i(0) &\ge \int_{\pi_i} A_i(r)^{1/3}\, d\lambda_i(r) \\
+&= \frac{1}{M} \int_E A_i(r)^{4/3}\, d\nu(r) \\
+&\ge \frac{1}{M} \left(\int_E A_i(r)\, d\nu(r)\right)^{4/3} \\
+&= M^{1/3}.
+\end{aligned}
 \end{equation}
 We claim that for every $r \in \inte \pi_i$, the $3$-dimensional relative interior $\inte_3 B_i(r)$ satisfies $\inte_3 B_i(r) \times \{r\} \subset \inte C_i$. Indeed, if $x \in \inte_3 B_i(r)$ and $(x, r) \in \partial C_i$, let $(p, q) \in \R^3 \times \R^{d-3}$ be a nonzero outer normal of a supporting hyperplane to $C_i$ at $(x, r)$. Since $x \in \inte_3 B_i(r)$, varying $x'$ in a small $3$-ball around $x$ inside $B_i(r)$ gives $p \cdot (x' - x) \le 0$, forcing $p = 0$. Then $q \ne 0$ and $q \cdot (r' - r) \le 0$ for all $r' \in \pi_i$, contradicting $r \in \inte \pi_i$.
 
@@ -926,7 +932,7 @@ By Proposition~\ref{prop:product-rigidity}, there exists an equal-volume convex 
 \[
 \frac{n}{2^d} \int_{B_i \times [-1,1]^{d-3}} g(x)\, dx\, dr = \frac{n}{2^d} \cdot 2^{d-3} \int_{B_i} g(x)\, dx = \frac{n}{8} \int_{B_i} g(x)\, dx.
 \]
-Hence the $d$-dimensional four-moment vector $M(C_i)$ coincides identically with the $3$-dimensional four-moment vector $M(B_i)$ for every $i$. Consequently, $P_n(M(B_i))$ and $Q_n(M(B_i))$ are independent of $i$, contradicting the $d = 3$ case of Theorem~\ref{thm:cube}.
+Thus $M(C_i) = M(B_i)$ for every $i$. Consequently, $P_n(M(B_i))$ and $Q_n(M(B_i))$ are independent of $i$, contradicting the $d = 3$ case of Theorem~\ref{thm:cube}.
 \end{proof}
 
 \begin{thebibliography}{9}
