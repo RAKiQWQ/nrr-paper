@@ -497,9 +497,9 @@ is a nonempty compact subinterval of $(-1, 1)$, and the intervals $J_1, \dots, J
 By absolute continuity of $\mu$ with respect to $\vol_d$, there exists $v_0 > 0$ such that every Borel set $E \subset B^d$ with $\mu(E) = 1/n$ satisfies $\vol_d(E) \ge v_0$. Choose $t \in (0,1)$ close enough to $1$ so that the two spherical caps $B^d \cap \{z > t\}$ and $B^d \cap \{z < -t\}$ each have volume strictly less than $v_0 / 2$. Then for every convex set $C \subset B^d$ with $\mu(C) = 1/n$, its ordinary volume centroid $(\bar u, \bar z) = \vol_d(C)^{-1} \int_C (u,z)\,dx$ satisfies
 \begin{equation}
 \label{eq:z-centroid-bound}
-|\bar z| \le \frac{1}{\vol_d(C)} \left(t \cdot \vol_d(C \cap \{|z| \le t\}) + 1 \cdot \vol_d(C \cap \{|z| > t\})\right) < \frac{1+t}{2} < 1,
+|\bar z| = \sigma \bar z \le t + (1-t)\frac{\vol_d(C \cap \{\sigma z > t\})}{\vol_d(C)} < \frac{1+t}{2} < 1,
 \end{equation}
-because $\vol_d(C \cap \{|z| > t\}) < \frac{1}{2} v_0 \le \frac{1}{2} \vol_d(C)$ for each cap (and in particular on the side of the sign of $\bar z$).
+where $\sigma \in \{-1,1\}$ is chosen so that $\sigma \bar z = |\bar z|$ (either sign when $\bar z = 0$). Indeed, $\sigma z \le t$ off the selected one-sided cap and $\sigma z \le 1$ on it, while $\vol_d(C \cap \{\sigma z > t\}) < \frac{1}{2}v_0 \le \frac{1}{2}\vol_d(C)$.
 
 Fix $h \in (0,1)$ strictly larger than $(1+t)/2$ and strictly larger than $\max_{1 \le i \le n-1} \max_{b \in J_i} |b|$, and choose $a > 0$ with $a^2 + h^2 < 1$. Put
 \begin{equation}
