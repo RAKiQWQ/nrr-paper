@@ -4,7 +4,7 @@
 
 This repository contains the English mathematical manuscript ([`paper/main.tex`](paper/main.tex)), its compiled [PDF](paper/main.pdf), and the companion exact rational arithmetic verification script ([`scripts/verify.py`](scripts/verify.py)).
 
-> **Formalization note:** A Lean 4 formalization of the full classification (combining these counterexamples with the prime-power positive direction) is currently in progress and will be published separately once the complete classification theorem passes full verification.
+The accompanying Lean 4.24.0 project proves both directions of the pointwise classification for each prescribed body and measure. Its final declaration is `NRR.fullClassification : NRR.FullClassification`. [Theorem statement](formalization/NRR/Statement.lean) · [Proof](formalization/NRR/PrimePowerTopologyConclusion.lean) · [Verification and reproduction](formalization/VERIFICATION.md)
 
 ## Main Results
 
@@ -17,6 +17,7 @@ This repository contains the English mathematical manuscript ([`paper/main.tex`]
 
 ## Repository Layout
 
+- `formalization/` — Lean sources, pinned dependencies, transitive axiom audit, and the [manuscript-to-theorem index](formalization/round7/formalization-plan.md).
 - `paper/main.tex` — Complete self-contained English LaTeX manuscript (`amsart`).
 - `paper/main.pdf` — Compiled PDF manuscript, committed alongside the LaTeX source.
 - `scripts/verify.py` — Self-contained Python 3 script (standard library only) performing exact rational arithmetic checks for the internal binomial gcd criterion ($n = 2, \dots, 200$), the piecewise-linear winding construction and end-winding sums ($n \in \{6, 10, 12, 15\}$), $324$ exact interpolation nodes for the four-moment slope inversion on the cube, the $3$-dimensional spherical cap bound at $1/\sqrt{2}$, and the positive-weight rebalancing on an asymmetric pyramid.
