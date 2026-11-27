@@ -2,9 +2,9 @@
 
 **Authors:** GPT 6.2 Astra, GPT 6.1 Sol, Gemini 4 Neon, Claude Fable 5.2
 
-This repository contains the English mathematical manuscript ([`paper/main.tex`](paper/main.tex)), its compiled [PDF](paper/main.pdf), and the companion exact rational arithmetic verification script ([`scripts/verify.py`](scripts/verify.py)).
+[Read the paper (PDF)](paper/main.pdf) · [LaTeX source](paper/main.tex) · [Lean theorem index](formalization/docs/theorem-index.md)
 
-The accompanying Lean 4.24.0 project proves both directions of the pointwise classification for each prescribed body and measure. Its final declaration is `NRR.fullClassification : NRR.FullClassification`. [Theorem statement](formalization/NRR/Statement.lean) · [Proof](formalization/NRR/PrimePowerTopologyConclusion.lean) · [Verification and reproduction](formalization/VERIFICATION.md)
+The accompanying Lean 4.24.0 project proves both directions of the pointwise classification for each prescribed body and measure. Its final declaration is `NRR.fullClassification : NRR.FullClassification`. [Theorem statement](formalization/NRR/Statement.lean) · [Proof](formalization/NRR/PrimePowerTopologyConclusion.lean) · [Verification and reproduction](formalization/docs/verification.md)
 
 ## Main Results
 
@@ -15,23 +15,23 @@ The accompanying Lean 4.24.0 project proves both directions of the pointwise cla
 3. **Dimension-uniform rational polynomial obstruction on cubes (Theorem 1.4).**
    For each non-prime-power $n \ge 2$, there exists a single pair of rational polynomials $P_n, Q_n \in \mathbb{Q}[X_1, X_2, X_3, X_4]$ such that in every dimension $d \ge 3$, the functionals $P_n(M(C))$, $Q_n(M(C))$ applied to four low-order volume moments $M(C) = (\langle x_1 \rangle_C, \langle x_2 \rangle_C, \langle (1+x_1)z \rangle_C, \langle x_2 z \rangle_C)$ together with the remaining $d - 3$ coordinate first moments $\langle x_j \rangle_C$ obstruct every equal-volume convex $n$-partition of $[-1,1]^d$.
 
-## Repository Layout
+## Repository layout
 
-- `formalization/` — Lean sources, pinned dependencies, transitive axiom audit, and the [manuscript-to-theorem index](formalization/round7/formalization-plan.md).
-- `paper/main.tex` — Complete self-contained English LaTeX manuscript (`amsart`).
-- `paper/main.pdf` — Compiled PDF manuscript, committed alongside the LaTeX source.
-- `scripts/verify.py` — Self-contained Python 3 script (standard library only) performing exact rational arithmetic checks for the internal binomial gcd criterion ($n = 2, \dots, 200$), the piecewise-linear winding construction and end-winding sums ($n \in \{6, 10, 12, 15\}$), $324$ exact interpolation nodes for the four-moment slope inversion on the cube, the $3$-dimensional spherical cap bound at $1/\sqrt{2}$, and the positive-weight rebalancing on an asymmetric pyramid.
-- `.github/workflows/build-paper.yml` — GitHub Actions workflow that runs `scripts/verify.py` and compiles `paper/main.tex` to PDF (available as a workflow artifact on every push).
+| Directory | Contents |
+| --- | --- |
+| [paper/](paper/) | The manuscript and its PDF. The supplementary notes give the [geometric counterexample](paper/notes/geometric-proof.md) and the [planar construction](paper/notes/planar-construction.md). |
+| [formalization/](formalization/) | The Lean project, its pinned dependencies, the [theorem index](formalization/docs/theorem-index.md), and the [verification record](formalization/docs/verification.md). |
+| [scripts/](scripts/) | The [exact arithmetic checks](scripts/verify.py) and the [Lean build and axiom verifier](scripts/verify-formalization.ps1). |
 
-## Building Locally
+## Building locally
 
-Run the exact rational arithmetic checks:
+From the repository root, run the exact rational arithmetic checks with Python 3.
 
 ```bash
 python3 scripts/verify.py
 ```
 
-Compile the LaTeX manuscript (requires a TeX distribution such as TeX Live or MiKTeX with `latexmk` or `pdflatex`):
+To compile the paper locally, use a TeX distribution with `latexmk`. The [GitHub Actions workflow](.github/workflows/build-paper.yml) also runs the arithmetic checks and builds the PDF.
 
 ```bash
 latexmk -pdf -outdir=build paper/main.tex

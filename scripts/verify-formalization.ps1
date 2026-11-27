@@ -4,7 +4,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$projectRoot = Split-Path -Parent $PSScriptRoot
+$projectRoot = Join-Path (Split-Path -Parent $PSScriptRoot) 'formalization'
 $previousPath = $env:PATH
 $previousThreads = $env:LEAN_NUM_THREADS
 
@@ -50,7 +50,7 @@ try {
     & lake env lean ProofAudit.lean
     if ($LASTEXITCODE -ne 0) { throw 'Transitive axiom audit failed.' }
 
-    & python ../scripts/verify.py
+    & python (Join-Path $PSScriptRoot 'verify.py')
     if ($LASTEXITCODE -ne 0) { throw 'Exact arithmetic checks failed.' }
 }
 finally {

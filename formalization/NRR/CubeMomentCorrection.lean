@@ -2,7 +2,7 @@ import NRR.CubeFourMomentReadout
 import NRR.PlanarScaling
 import NRR.GlobalAssembly
 
-/-! The bounded, continuous four-moment correction of round7/proof.md §4.
+/-! The bounded, continuous four-moment correction for the uniform three-dimensional cube.
 The input is exactly `(W,V) : (ℝ × ℝ) × (ℝ × ℝ)`. No integration or
 geometric identification of these inputs is assumed here. -/
 
