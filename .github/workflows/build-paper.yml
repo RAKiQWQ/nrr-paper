@@ -1,0 +1,31 @@
+name: Build Paper PDF
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run exact rational arithmetic checks
+        run: python3 scripts/verify.py
+
+      - name: Compile LaTeX manuscript
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: paper/main.tex
+          working_directory: .
+          args: -pdf -interaction=nonstopmode -file-line-error -outdir=build
+
+      - name: Upload compiled PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: generalized-nrr-counterexamples-pdf
+          path: build/main.pdf
+          if-no-files-found: error
